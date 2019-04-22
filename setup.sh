@@ -27,9 +27,12 @@ done
 # be a problem
 cset shield -c 3,7 -k on
 
-cset shield --exec -- ./test 64 15 result_64.txt
-cset shield --exec -- ./test 128 15 result_128.txt
-cset shield --exec -- ./test 256 15 result_256.txt
+
+cset shield --exec -- ./test 32 25 result_32.txt
+cset shield --exec -- ./test 64 25 result_64.txt
+cset shield --exec -- ./test 128 25 result_128.txt
+cset shield --exec -- ./test 256 25 result_256.txt
+cset shield --exec -- ./test 512 25 result_512.txt
 
 # cleanup
 cset shield --reset
