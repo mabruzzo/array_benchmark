@@ -3,8 +3,9 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 
+# if True, plots average run times with standard deviations
+# if False, plots the minimum run times without errors
 use_errs = False
-use_min = False
 
 results = []
 N_vals = []
@@ -34,8 +35,13 @@ for i,name in enumerate(test_names):
 
 fig,ax = plt.subplots(2,1, figsize=(4,7),sharex=True)
 for name,fmt in zip(test_names,fmts):
-    ax[0].errorbar(N_vals[idx],data[name][:,0][idx],
-                   yerr=data[name][:,1][idx], fmt=fmt,label = name)
+    if use_errs:
+        ax[0].errorbar(N_vals[idx],data[name][:,0][idx],
+                       yerr=data[name][:,1][idx], fmt=fmt,label = name)
+    else:
+        print data[name][:,0][idx]
+        ax[0].plot(N_vals[idx],data[name][:,0][idx],
+                       fmt,label = name)
 ax[0].set_yscale("log")
 ax[0].set_xscale("log",basex=2)
 ax[0].set_ylabel("$t(N^3)$")
